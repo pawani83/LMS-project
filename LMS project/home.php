@@ -28,6 +28,9 @@
                 padding-left: 25px;
             }
 
+            hr{
+                color: #510400;
+            }
 
         </style>
 
@@ -56,7 +59,8 @@
             </div>
         </div>
 
-        
+        <hr>
+
         <div class="row mx-4">
             <div class="col-sm-4 p-5 bg-brown text-lightyellow">
                 <p class="display-4">Welcome to..<br>LibraNET</p>
@@ -83,13 +87,16 @@
                 <div class="card rounded bg-brown text-center p-3">
                     <img src="clipart489671.png" alt="newMembershipIcon" class="mx-auto d-block img-fluid" style="width:250px; height:250px">
                     <p class="display-4 text-lightyellow">Already have a Membership..</p>
-                    <p><a href="#" class="btn btn-lg btn-primary"><span class="spinner-grow spinner-grow-sm"></span> Log-in</a></p>
+                    <p><a href="Log-in/login.php" class="btn btn-lg btn-primary" target="_blank"><span class="spinner-grow spinner-grow-sm"></span> Log-in</a></p>
                 </div>
             </div>
         </div>
 
-        <div class="mt-5 p-3 pt-4 bg-dark text-white text-center">
-            <p>© Copyright 2023 LibraNET. All rights reserved.</p>
-        </div>
+        <!-- Footer Element of the page !-->
+        <footer class="container-fluid mt-5 pt-3 bg-dark text-center text-white">
+            <div class=" d-flex align-items-center justify-content-center">
+                <p>&copy; Copyright 2023 LibraNET. All rights reserved.</p>
+            </div>
+        </footer>
     </body>
 </html>
