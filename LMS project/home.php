@@ -9,7 +9,7 @@
 
         <style>
             body{
-                background-color: lightyellow;
+                background-color: lightyellow
             }
 
             .bg-brown{
@@ -31,6 +31,10 @@
             hr{
                 color: #510400;
             }
+            
+            #my_nav .nav-link{
+                color: #510400;
+            }
 
         </style>
 
@@ -42,15 +46,23 @@
                 <p class="display-4" style="color:#510400"><b>LibraNET</b></p>
             </div>
             <div class="col-sm-8 pt-4 ">
-                <ul class="nav justify-content-end">
+                <ul class="nav nav-pills justify-content-end" id="my_nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">about us</a>
+                        <a class="nav-link active" href="home.php" style="background-color: #510400; color:lightyellow;">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">books</a>
+                        <a class="nav-link" href="About us/aboutus.html" target="_blank">ABOUT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">contacts</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">BOOKS</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" >All</a></li>
+                            <li><a class="dropdown-item" href="#">For Borrow</a></li>
+                            <li><a class="dropdown-item" href="#">For Reference</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACTS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Disabled</a>
@@ -87,13 +99,13 @@
                 <div class="card rounded bg-brown text-center p-3">
                     <img src="clipart489671.png" alt="newMembershipIcon" class="mx-auto d-block img-fluid" style="width:250px; height:250px">
                     <p class="display-4 text-lightyellow">Already have a Membership..</p>
-                    <p><a href="Log-in/login.php" class="btn btn-lg btn-primary" target="_blank"><span class="spinner-grow spinner-grow-sm"></span> Log-in</a></p>
+                    <p><a href="Log-in and sign-up/login.php" class="btn btn-lg btn-primary" target="_blank"><span class="spinner-grow spinner-grow-sm"></span> Log-in</a></p>
                 </div>
             </div>
         </div>
 
         <!-- Footer Element of the page !-->
-        <footer class="container-fluid mt-5 pt-3 bg-dark text-center text-white">
+        <footer class="footer mt-5 pt-3 bg-dark text-center text-white">
             <div class=" d-flex align-items-center justify-content-center">
                 <p>&copy; Copyright 2023 LibraNET. All rights reserved.</p>
             </div>
