@@ -7,6 +7,20 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+        <!-- preventing back navigation button in login page -->
+        <script type = "text/javascript" >
+            function preventBack(){window.history.forward();}
+                setTimeout("preventBack()", 0);
+                window.onunload=function(){null};
+        </script>
+
+        <script>
+            if (performance.navigation.type === 2) {
+                // User accessed the page via the back or forward button, redirect them back to the login page
+                window.location.replace("http://localhost/LMS%20project/Log-in%20and%20sign-up/login.php");
+            }
+        </script>
+
         <?php
             include 'C:\xampp\htdocs\LMS project\mainConnect.php';
 
@@ -22,8 +36,39 @@
                     // checkbox is checked.
 
                     $query = "SELECT Admin_Password FROM librarian WHERE Admin_Id = ?";
+                    $query2 = "SELECT * FROM librarian WHERE Admin_Id = ?";
+
                     $stmt = $conn->prepare($query);
                     $stmt->bind_param("s", $userName);
+
+                    $stmt2 = $conn->prepare($query2);
+
+                    // check if the sql statement $stmt2 is prepared successfully..
+                    if($stmt2)
+                    {
+                        // Bind the parameter
+                        $stmt2->bind_param("s", $userName);
+
+                        // Execute the bind parameter...
+                        $stmt2->execute();
+                        // get the result set..
+                        $admin_details = $stmt2->get_result();
+
+                        //
+                        $Details = array();
+
+                        // fetch the adminDetails row to the details array..
+                        $Details[] = $admin_details->fetch_assoc();
+
+                        // free the admin_details set..
+                        $admin_details -> free_result();
+
+                    }
+                    else{
+                        // leave it free, No data found case will be handled by below parts..
+                    }
+
+                    $stmt2->close();
 
                     // Execute the query
                     $stmt->execute();
@@ -35,15 +80,18 @@
                         if ($password == $adminPassword)
                         {
                             // password matches
-                            header("Location: http://localhost/LMS%20project/Librarian/Admin.php");
+                            $sendDataString = http_build_query(array('data'=> $Details));
+                            $redirectURL = 'http://localhost/LMS%20project/Librarian/Admin.php?'.$sendDataString;
+                            header("Location: ".$redirectURL);
                             exit;
+
                         }
                         else{
                             // Passwords do not match
                             echo '<div class="alert alert-danger alert-dismissible text-center">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            <strong>Unable to login.! Invalid username or password.</strong>
-                            </div>';
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                <strong>Unable to login.! Invalid username or password.</strong>
+                                </div>';
                             // header("Refresh: 2; URL=login.php"); // Redirect to the login page after 3 seconds
                             // exit;
                         }
@@ -96,9 +144,7 @@
                         //exit;
                     }
                 }
-
             }
-                
             
         ?>
 
@@ -180,9 +226,8 @@
             </div>
         </div>
         
-
         <!-- Footer Element of the page !-->
-        <footer class="footer mt-5 pt-3 bg-dark text-center text-white">
+        <footer class="footer fixed-bottom mt-5 pt-3 bg-dark text-center text-white">
             <div class=" d-flex align-items-center justify-content-center">
                 <p>&copy; Copyright 2023 LibraNET. All rights reserved.</p>
             </div>
