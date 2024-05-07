@@ -1,2 +1,2 @@
 # LMS-project
-Give your support asap
+LIBRARY MANAGEMENT SYSTEM
